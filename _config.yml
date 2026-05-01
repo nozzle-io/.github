@@ -1,0 +1,31 @@
+title: nozzle
+description: Cross-platform GPU texture sharing between local processes
+url: https://nozzle-io.org
+baseurl: ""
+repository: nozzle-io/nozzle
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+
+theme: null
+plugins: []
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - README.md
+
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+sass:
+  style: compressed

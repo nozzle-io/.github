@@ -1,0 +1,44 @@
+<header class="nav">
+  <div class="nav-inner">
+    <a href="{{ '/' | relative_url }}" class="nav-brand">nozzle</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="{{ '/getting-started.html' | relative_url }}">Getting Started</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">API</button>
+        <div class="nav-dropdown-menu">
+          <a href="{{ '/api/cpp.html' | relative_url }}">C++ API</a>
+          <a href="{{ '/api/c.html' | relative_url }}">C API</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Backends</button>
+        <div class="nav-dropdown-menu">
+          <a href="{{ '/backends/metal.html' | relative_url }}">Metal/IOSurface</a>
+          <a href="{{ '/backends/d3d11.html' | relative_url }}">D3D11</a>
+          <a href="{{ '/backends/dmabuf.html' | relative_url }}">DMA-BUF</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">Integrations</button>
+        <div class="nav-dropdown-menu">
+          <a href="{{ '/integrations/python.html' | relative_url }}">Python</a>
+          <a href="{{ '/integrations/rust.html' | relative_url }}">Rust</a>
+          <a href="{{ '/integrations/swift.html' | relative_url }}">Swift</a>
+          <a href="{{ '/integrations/openframeworks.html' | relative_url }}">openFrameworks</a>
+          <a href="{{ '/integrations/max-msp.html' | relative_url }}">Max/MSP</a>
+          <a href="{{ '/integrations/touchdesigner.html' | relative_url }}">TouchDesigner</a>
+          <a href="{{ '/integrations/obs.html' | relative_url }}">OBS Studio</a>
+          <a href="{{ '/integrations/blender.html' | relative_url }}">Blender</a>
+          <a href="{{ '/integrations/sokol.html' | relative_url }}">sokol_gfx</a>
+          <a href="{{ '/integrations/trussc.html' | relative_url }}">TrussC</a>
+        </div>
+      </div>
+      <a href="{{ '/format-support.html' | relative_url }}">Formats</a>
+      <a href="{{ '/architecture.html' | relative_url }}">Architecture</a>
+      <a href="https://github.com/nozzle-io/nozzle" class="nav-github" aria-label="GitHub">GitHub</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
