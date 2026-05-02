@@ -118,7 +118,7 @@ auto info = frame.info();
   <tbody>
     <tr><td><a href="https://github.com/nozzle-io/py.nozzle">py.nozzle</a></td><td>—</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.rs">nozzle.rs</a></td><td>—</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle.swift">nozzle.swift</a></td><td>—</td><td>—</td><td>N/A</td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.swift">nozzle.swift</a></td><td>—</td><td></td><td>N/A</td><td>N/A</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleSender</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleReceiver</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/tcxNozzle">tcxNozzle</a></td><td>tcxNozzleSender</td><td></td><td></td><td></td></tr>

@@ -12,7 +12,7 @@ A C/C++17 static library for sharing GPU textures between applications on the sa
 |---|---|---|---|---|
 | [py.nozzle](https://github.com/nozzle-io/py.nozzle) | — | | | |
 | [nozzle.rs](https://github.com/nozzle-io/nozzle.rs) | — | | | |
-| [nozzle.swift](https://github.com/nozzle-io/nozzle.swift) | — | — | N/A | N/A |
+| [nozzle.swift](https://github.com/nozzle-io/nozzle.swift) | — | | N/A | N/A |
 | [ofxNozzle](https://github.com/nozzle-io/ofxNozzle) | ofxNozzleSender | | | |
 | [ofxNozzle](https://github.com/nozzle-io/ofxNozzle) | ofxNozzleReceiver | | | |
 | [tcxNozzle](https://github.com/nozzle-io/tcxNozzle) | tcxNozzleSender | | | |
