@@ -75,7 +75,7 @@ Nozzle supports a range of texture formats for different use cases: standard 8-b
 
 ## Format Fallback
 
-When `allow_format_fallback` is `true` (default), the receiver accepts a format that differs from what it requested, falling back to the nearest compatible format. This is useful when sender and receiver run on different GPU vendors or different OS versions.
+When `allow_format_fallback` is `true` (default), the sender falls back to a lower-precision compatible format if the GPU does not support the requested format. The fallback chain steps down precision (e.g., `rgba16_float` → `rgba8_unorm`, `r32_float` → `r16_float`) until a supported format is found. This handles cases where older GPUs or specific backends lack support for high-precision formats.
 
 ## Usage
 
