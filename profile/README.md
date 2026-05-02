@@ -8,6 +8,8 @@ A C/C++17 static library for sharing GPU textures between applications on the sa
 
 ## Integration Status
 
+*Last updated: 2026/05/03 08:00 (JST)*
+
 | Integration | Module | macOS | Windows | Linux |
 |---|---|---|---|---|
 | [py.nozzle](https://github.com/nozzle-io/py.nozzle) | * | | | |

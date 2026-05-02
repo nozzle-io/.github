@@ -111,6 +111,8 @@ auto info = frame.info();
 
 <h2>Integration Status</h2>
 
+<p><em>Last updated: 2026/05/03 08:00 (JST)</em></p>
+
 <table>
   <thead>
     <tr><th>Integration</th><th>Module</th><th>macOS</th><th>Windows</th><th>Linux</th></tr>
