@@ -26,6 +26,7 @@ A C/C++17 static library for sharing GPU textures between applications on the sa
 | [obs-nozzle](https://github.com/nozzle-io/obs-nozzle) | * | | | |
 | [blender-nozzle](https://github.com/nozzle-io/blender-nozzle) | * | | | |
 | [nozzle-sokol](https://github.com/nozzle-io/nozzle-sokol) | * | | | |
+| [nozzle.unity](https://github.com/nozzle-io/nozzle.unity) | * | | | |
 
 ## Platforms
 

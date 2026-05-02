@@ -133,6 +133,7 @@ auto info = frame.info();
     <tr><td><a href="https://github.com/nozzle-io/obs-nozzle">obs-nozzle</a></td><td>*</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/blender-nozzle">blender-nozzle</a></td><td>*</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-sokol">nozzle-sokol</a></td><td>*</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.unity">nozzle.unity</a></td><td>*</td><td></td><td></td><td></td></tr>
   </tbody>
 </table>
 
