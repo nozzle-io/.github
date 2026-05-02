@@ -99,6 +99,7 @@ auto info = frame.info();
 <div class="integrations-grid">
   <a href="integrations/python.html">py.nozzle<span class="lang">Python</span></a>
   <a href="integrations/rust.html">nozzle.rs<span class="lang">Rust</span></a>
+  <a href="integrations/dotnet.html">Nozzle.NET<span class="lang">.NET</span></a>
   <a href="integrations/swift.html">nozzle.swift<span class="lang">Swift</span></a>
   <a href="integrations/openframeworks.html">ofxNozzle<span class="lang">C++ / openFrameworks</span></a>
   <a href="integrations/max-msp.html">jit.nozzle<span class="lang">Max/MSP</span></a>
@@ -120,6 +121,7 @@ auto info = frame.info();
   <tbody>
     <tr><td><a href="https://github.com/nozzle-io/py.nozzle">py.nozzle</a></td><td>*</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.rs">nozzle.rs</a></td><td>*</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/Nozzle.NET">Nozzle.NET</a></td><td>*</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.swift">nozzle.swift</a></td><td>*</td><td></td><td>N/A</td><td>N/A</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleSender</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleReceiver</td><td></td><td></td><td></td></tr>
