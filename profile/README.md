@@ -10,19 +10,19 @@ A C/C++17 static library for sharing GPU textures between applications on the sa
 
 | Integration | Module | macOS | Windows | Linux |
 |---|---|---|---|---|
-| [py.nozzle](https://github.com/nozzle-io/py.nozzle) | — | | | |
-| [nozzle.rs](https://github.com/nozzle-io/nozzle.rs) | — | | | |
-| [nozzle.swift](https://github.com/nozzle-io/nozzle.swift) | — | | N/A | N/A |
+| [py.nozzle](https://github.com/nozzle-io/py.nozzle) | * | | | |
+| [nozzle.rs](https://github.com/nozzle-io/nozzle.rs) | * | | | |
+| [nozzle.swift](https://github.com/nozzle-io/nozzle.swift) | * | | N/A | N/A |
 | [ofxNozzle](https://github.com/nozzle-io/ofxNozzle) | ofxNozzleSender | | | |
 | [ofxNozzle](https://github.com/nozzle-io/ofxNozzle) | ofxNozzleReceiver | | | |
 | [tcxNozzle](https://github.com/nozzle-io/tcxNozzle) | tcxNozzleSender | | | |
 | [tcxNozzle](https://github.com/nozzle-io/tcxNozzle) | tcxNozzleReceiver | | | |
-| [jit.nozzle](https://github.com/nozzle-io/jit.nozzle) | jit.nozzle.\* | ✅ | | N/A |
-| [jit.nozzle](https://github.com/nozzle-io/jit.nozzle) | jit.gl.nozzle | | | N/A |
-| [nozzle-TOP](https://github.com/nozzle-io/nozzle-TOP) | — | ✅ | | N/A |
-| [obs-nozzle](https://github.com/nozzle-io/obs-nozzle) | — | | | |
-| [blender-nozzle](https://github.com/nozzle-io/blender-nozzle) | — | | | |
-| [nozzle-sokol](https://github.com/nozzle-io/nozzle-sokol) | — | | | |
+| [jit.nozzle](https://github.com/nozzle-io/jit.nozzle) | jit.nozzle.* | ✅ | | N/A |
+| [jit.nozzle](https://github.com/nozzle-io/jit.nozzle) | jit.gl.nozzle.* | | | N/A |
+| [nozzle-TOP](https://github.com/nozzle-io/nozzle-TOP) | * | ✅ | | N/A |
+| [obs-nozzle](https://github.com/nozzle-io/obs-nozzle) | * | | | |
+| [blender-nozzle](https://github.com/nozzle-io/blender-nozzle) | * | | | |
+| [nozzle-sokol](https://github.com/nozzle-io/nozzle-sokol) | * | | | |
 
 ## Platforms
 
