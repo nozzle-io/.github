@@ -49,47 +49,47 @@ title: nozzle
 <div>
 
 <h4>Sender</h4>
-```cpp
+{% highlight cpp %}
 #include <nozzle/nozzle.hpp>
 
-auto sender = nozzle::sender::create({
-    .name = "my_output",
-    .application_name = "MyApp",
-    .ring_buffer_size = 3
-}).value();
+nozzle::sender_desc desc;
+desc.name = "my_output";
+desc.application_name = "MyApp";
+desc.ring_buffer_size = 3;
+auto sender = nozzle::sender::create(std::move(desc)).value();
 
-auto frame = sender.acquire_writable_frame({
-    .width = 1920,
-    .height = 1080,
-    .format = nozzle::texture_format::rgba8_unorm
-}).value();
+nozzle::texture_desc td;
+td.width = 1920;
+td.height = 1080;
+td.format = nozzle::texture_format::rgba8_unorm;
+auto frame = sender.acquire_writable_frame(td).value();
 
 // ... write GPU data into frame ...
 
 sender.commit_frame(frame);
-```
+{% endhighlight %}
 
 </div>
 <div>
 
 <h4>Receiver</h4>
-```cpp
+{% highlight cpp %}
 #include <nozzle/nozzle.hpp>
 
-auto receiver = nozzle::receiver::create({
-    .name = "my_output",
-    .application_name = "MyViewer"
-}).value();
+nozzle::receiver_desc desc;
+desc.name = "my_output";
+desc.application_name = "MyViewer";
+auto receiver = nozzle::receiver::create(std::move(desc)).value();
 
-auto frame = receiver.acquire_frame({
-    .timeout_ms = 1000
-}).value();
+nozzle::acquire_desc ad;
+ad.timeout_ms = 1000;
+auto frame = receiver.acquire_frame(ad).value();
 
 auto info = frame.info();
 // info.width == 1920
 // info.height == 1080
 // info.frame_index, info.timestamp_ns ...
-```
+{% endhighlight %}
 
 </div>
 </div>
