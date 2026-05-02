@@ -109,6 +109,27 @@ auto info = frame.info();
   <a href="integrations/trussc.html">tcxNozzle<span class="lang">TrussC</span></a>
 </div>
 
-<h2>Acknowledgments</h2>
+<h2>Integration Status</h2>
+
+<table>
+  <thead>
+    <tr><th>Integration</th><th>Module</th><th>macOS</th><th>Windows</th><th>Linux</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="https://github.com/nozzle-io/py.nozzle">py.nozzle</a></td><td>—</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.rs">nozzle.rs</a></td><td>—</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.swift">nozzle.swift</a></td><td>—</td><td>—</td><td>N/A</td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleSender</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleReceiver</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/tcxNozzle">tcxNozzle</a></td><td>tcxNozzleSender</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/tcxNozzle">tcxNozzle</a></td><td>tcxNozzleReceiver</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/jit.nozzle">jit.nozzle</a></td><td>jit.nozzle.*</td><td>✅</td><td></td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/jit.nozzle">jit.nozzle</a></td><td>jit.gl.nozzle</td><td></td><td></td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-TOP">nozzle-TOP</a></td><td>—</td><td>✅</td><td></td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/obs-nozzle">obs-nozzle</a></td><td>—</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/blender-nozzle">blender-nozzle</a></td><td>—</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-sokol">nozzle-sokol</a></td><td>—</td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
 
 <p>nozzle draws significant inspiration from <a href="https://syphon.info/">Syphon</a> and <a href="http://spout.zeal.co/">Spout</a>. The named sender/receiver model, the concept of shared GPU textures between local processes, and the focus on creative-coding and real-time graphics integration all follow the path they established. nozzle is an independent implementation with its own API design and is not protocol-compatible with either project.</p>
