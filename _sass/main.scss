@@ -447,3 +447,39 @@ body {
   .hero .hero-subtitle { font-size: 16px; }
   .features { grid-template-columns: 1fr; }
 }
+
+
+// About page language picker
+.about-lang-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $color-border;
+}
+
+.lang-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  color: $color-text-muted;
+  background: $color-bg-sidebar;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+
+  &:hover { background: #eef1f6; color: $color-text-heading; }
+
+  &.active {
+    background: $color-accent;
+    color: #fff;
+    border-color: $color-accent;
+    font-weight: 600;
+  }
+}
+
+.about-lang-content {
+  max-width: 100%;
+}
