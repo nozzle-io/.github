@@ -16,7 +16,7 @@ title: About
   <button class="lang-btn" data-lang="ru">Русский</button>
 </div>
 
-<div class="about-lang-content" data-lang="ja" markdown="1">
+<div class="about-lang-content" data-lang="ja" style="display:none" markdown="1">
 
 # nozzle について
 
@@ -83,7 +83,7 @@ AI agentはCIスクリプトはすぐに書いてくれる。
 
 </div>
 
-<div class="about-lang-content" data-lang="en" style="display:none" markdown="1">
+<div class="about-lang-content" data-lang="en" markdown="1">
 
 # About nozzle
 
@@ -989,7 +989,7 @@ AI-агенты быстро пишут CI-скрипты. Но они так ж
   }
 
   var bl = navigator.language || '';
-  var target = langMap[bl] || langMap[bl.split('-')[0]] || 'ja';
+  var target = langMap[bl] || langMap[bl.split('-')[0]] || 'en';
   var saved = null;
   try { saved = localStorage.getItem('about-lang'); } catch(e) {}
   switchLang(saved || target);
