@@ -10,16 +10,16 @@
 <body>
   {% include nav.html %}
   <div class="layout">
+    {% assign sidebar_pages = site.pages | where_exp: "p", "p.dir == page.dir" | sort: "title" %}
+    {% if sidebar_pages.size > 1 %}
     <aside class="sidebar">
-      {% if page.collection %}
-        <nav class="sidebar-nav" aria-label="{{ page.collection }}">
-          {% assign pages = site.pages | where_exp: "p", "p.dir contains page.dir" | sort: "title" %}
-          {% for p in pages %}
-            <a href="{{ p.url | relative_url }}" class="sidebar-link{% if p.url == page.url %} active{% endif %}">{{ p.title }}</a>
-          {% endfor %}
-        </nav>
-      {% endif %}
+      <nav class="sidebar-nav" aria-label="Section navigation">
+        {% for p in sidebar_pages %}
+          <a href="{{ p.url | relative_url }}" class="sidebar-link{% if p.url == page.url %} active{% endif %}">{{ p.title }}</a>
+        {% endfor %}
+      </nav>
     </aside>
+    {% endif %}
     <main class="content">
       <div class="content-inner">
         {% unless page.url == '/' %}
