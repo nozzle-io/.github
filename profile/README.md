@@ -2,9 +2,20 @@
 
 Cross-platform GPU texture sharing between local processes.
 
+> This codebase is currently in its AI-slob prototyping phase: the code runs on momentum, vibes, and plausible intent.
+> Proper debugging will be introduced once demand graduates from hypothetical to measurable.
+
 ## What is nozzle?
 
 A C/C++17 static library for sharing GPU textures between applications on the same machine. An alternative to Syphon and Spout — with Linux support, modern C++ API, and bindings for Python, Rust, Swift, and more.
+
+## Disclaimer / Notice
+
+This library is currently a work in progress and contains many incomplete features and unverified implementations.
+Although it may appear usable at first glance, it may not function correctly.
+
+Please use it with the understanding that no guarantees are made regarding its behavior, and perform debugging, validation, and review as needed.
+If you encounter problems, please do not become angry; instead, contributions in the form of Issues or Pull Requests would be greatly appreciated.
 
 ## Integration Status
 
