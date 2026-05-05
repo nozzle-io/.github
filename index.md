@@ -107,6 +107,7 @@ auto info = frame.info();
   <a href="integrations/obs.html">obs-nozzle<span class="lang">OBS Studio</span></a>
   <a href="integrations/blender.html">blender-nozzle<span class="lang">Blender</span></a>
   <a href="integrations/sokol.html">nozzle-sokol<span class="lang">sokol_gfx</span></a>
+  <a href="integrations/zig.html">nozzle.zig<span class="lang">Zig</span></a>
   <a href="integrations/trussc.html">tcxNozzle<span class="lang">TrussC</span></a>
 </div>
 
@@ -133,6 +134,7 @@ auto info = frame.info();
     <tr><td><a href="https://github.com/nozzle-io/obs-nozzle">obs-nozzle</a></td><td>*</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/blender-nozzle">blender-nozzle</a></td><td>*</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-sokol">nozzle-sokol</a></td><td>*</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.zig">nozzle.zig</a></td><td>*</td><td></td><td></td><td></td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.unity">nozzle.unity</a></td><td>*</td><td></td><td></td><td></td></tr>
   </tbody>
 </table>
