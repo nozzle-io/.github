@@ -29,7 +29,7 @@ title: nozzle
   </div>
   <div class="feature-card">
     <h3>C ABI</h3>
-    <p>Full C API for plugin/host integration. Bindings for Python, Rust, Swift, and more.</p>
+    <p>Full C API for plugin/host integration. Bindings for Python, Rust, Swift, Zig, Go, Dart, Java, Kotlin, and more.</p>
   </div>
   <div class="feature-card">
     <h3>High-Precision Formats</h3>
@@ -101,6 +101,11 @@ auto info = frame.info();
   <a href="integrations/rust.html">nozzle.rs<span class="lang">Rust</span></a>
   <a href="integrations/dotnet.html">Nozzle.NET<span class="lang">.NET</span></a>
   <a href="integrations/swift.html">nozzle.swift<span class="lang">Swift</span></a>
+  <a href="integrations/zig.html">nozzle.zig<span class="lang">Zig</span></a>
+  <a href="integrations/go.html">nozzle.go<span class="lang">Go</span></a>
+  <a href="integrations/dart.html">nozzle.dart<span class="lang">Dart</span></a>
+  <a href="integrations/java.html">nozzle.java<span class="lang">Java</span></a>
+  <a href="integrations/kotlin.html">nozzle.kotlin<span class="lang">Kotlin</span></a>
   <a href="integrations/openframeworks.html">ofxNozzle<span class="lang">C++ / openFrameworks</span></a>
   <a href="integrations/max-msp.html">jit.nozzle<span class="lang">Max/MSP</span></a>
   <a href="integrations/touchdesigner.html">nozzle-TOP<span class="lang">TouchDesigner</span></a>
