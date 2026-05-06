@@ -118,7 +118,7 @@ auto info = frame.info();
 
 <h2>Integration Status</h2>
 
-<p><em>Last updated: 2026/05/07 21:15 (JST)</em></p>
+<p><em>Last updated: 2026/05/08 02:30 (JST)</em></p>
 <p>✅ = 実機検証済 &nbsp; 🟦 = CI build only &nbsp; — = 非対応 &nbsp; N/A = 対象外</p>
 
 <table>
