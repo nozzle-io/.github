@@ -108,6 +108,7 @@ auto info = frame.info();
   <a href="integrations/kotlin.html">nozzle.kotlin<span class="lang">Kotlin</span></a>
   <a href="integrations/openframeworks.html">ofxNozzle<span class="lang">C++ / openFrameworks</span></a>
   <a href="integrations/max-msp.html">jit.nozzle<span class="lang">Max/MSP</span></a>
+  <a href="integrations/puredata.html">nozzle-pd<span class="lang">PureData / GEM</span></a>
   <a href="integrations/touchdesigner.html">nozzle-TOP<span class="lang">TouchDesigner</span></a>
   <a href="integrations/obs.html">obs-nozzle<span class="lang">OBS Studio</span></a>
   <a href="integrations/blender.html">blender-nozzle<span class="lang">Blender</span></a>
@@ -117,7 +118,7 @@ auto info = frame.info();
 
 <h2>Integration Status</h2>
 
-<p><em>Last updated: 2026/05/06 16:00 (JST)</em></p>
+<p><em>Last updated: 2026/05/07 00:40 (JST)</em></p>
 
 <table>
   <thead>
@@ -143,6 +144,10 @@ auto info = frame.info();
     <tr><td><a href="https://github.com/nozzle-io/obs-nozzle">obs-nozzle</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/blender-nozzle">blender-nozzle</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-sokol">nozzle-sokol</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_send</td><td>✅</td><td>—</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_receive</td><td>✅</td><td>—</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_gl_send</td><td>✅</td><td>—</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_gl_receive</td><td>✅</td><td>—</td><td>✅</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.unity">nozzle.unity</a></td><td>*</td><td colspan="3">Postponed</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.wasm">nozzle.wasm</a></td><td>*</td><td colspan="3">Pended</td></tr>
   </tbody>
