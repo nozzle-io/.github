@@ -133,8 +133,8 @@ auto info = frame.info();
     <tr><td><a href="https://github.com/nozzle-io/nozzle.zig">nozzle.zig</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.go">nozzle.go</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.dart">nozzle.dart</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle.java">nozzle.java</a></td><td>*</td><td>🟦</td><td>—</td><td>🟦</td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle.kotlin">nozzle.kotlin</a></td><td>*</td><td>🟦</td><td>—</td><td>🟦</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.java">nozzle.java</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.kotlin">nozzle.kotlin</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleSender</td><td>✅</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleReceiver</td><td>✅</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/tcxNozzle">tcxNozzle</a></td><td>tcxNozzleSender</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
@@ -145,8 +145,8 @@ auto info = frame.info();
     <tr><td><a href="https://github.com/nozzle-io/obs-nozzle">obs-nozzle</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/blender-nozzle">blender-nozzle</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-sokol">nozzle-sokol</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_*</td><td>🟦</td><td>—</td><td>🟦</td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_gl_*</td><td>🟦</td><td>—</td><td>🟦</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_gl_*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.unity">nozzle.unity</a></td><td>*</td><td colspan="3">Postponed</td></tr>
   </tbody>
 </table>
