@@ -112,35 +112,39 @@ auto info = frame.info();
   <a href="integrations/obs.html">obs-nozzle<span class="lang">OBS Studio</span></a>
   <a href="integrations/blender.html">blender-nozzle<span class="lang">Blender</span></a>
   <a href="integrations/sokol.html">nozzle-sokol<span class="lang">sokol_gfx</span></a>
-  <a href="integrations/zig.html">nozzle.zig<span class="lang">Zig</span></a>
   <a href="integrations/trussc.html">tcxNozzle<span class="lang">TrussC</span></a>
 </div>
 
 <h2>Integration Status</h2>
 
-<p><em>Last updated: 2026/05/03 08:00 (JST)</em></p>
+<p><em>Last updated: 2026/05/06 16:00 (JST)</em></p>
 
 <table>
   <thead>
     <tr><th>Integration</th><th>Module</th><th>macOS</th><th>Windows</th><th>Linux</th></tr>
   </thead>
   <tbody>
-    <tr><td><a href="https://github.com/nozzle-io/py.nozzle">py.nozzle</a></td><td>*</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle.rs">nozzle.rs</a></td><td>*</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/Nozzle.NET">Nozzle.NET</a></td><td>*</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle.swift">nozzle.swift</a></td><td>*</td><td></td><td>N/A</td><td>N/A</td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleSender</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleReceiver</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/tcxNozzle">tcxNozzle</a></td><td>tcxNozzleSender</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/tcxNozzle">tcxNozzle</a></td><td>tcxNozzleReceiver</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/jit.nozzle">jit.nozzle</a></td><td>jit.nozzle.*</td><td>✅</td><td></td><td>N/A</td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/jit.nozzle">jit.nozzle</a></td><td>jit.gl.nozzle.*</td><td></td><td></td><td>N/A</td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle-TOP">nozzle-TOP</a></td><td>*</td><td>✅</td><td></td><td>N/A</td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/obs-nozzle">obs-nozzle</a></td><td>*</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/blender-nozzle">blender-nozzle</a></td><td>*</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle-sokol">nozzle-sokol</a></td><td>*</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle.zig">nozzle.zig</a></td><td>*</td><td></td><td></td><td></td></tr>
-    <tr><td><a href="https://github.com/nozzle-io/nozzle.unity">nozzle.unity</a></td><td>*</td><td></td><td></td><td></td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/py.nozzle">py.nozzle</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.rs">nozzle.rs</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/Nozzle.NET">Nozzle.NET</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.swift">nozzle.swift</a></td><td>*</td><td>✅</td><td>N/A</td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.zig">nozzle.zig</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.go">nozzle.go</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.dart">nozzle.dart</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.java">nozzle.java</a></td><td>*</td><td>✅</td><td>—</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.kotlin">nozzle.kotlin</a></td><td>*</td><td>✅</td><td>—</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleSender</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/ofxNozzle">ofxNozzle</a></td><td>ofxNozzleReceiver</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/tcxNozzle">tcxNozzle</a></td><td>tcxNozzleSender</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/tcxNozzle">tcxNozzle</a></td><td>tcxNozzleReceiver</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/jit.nozzle">jit.nozzle</a></td><td>jit.nozzle.*</td><td>✅</td><td>✅</td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/jit.nozzle">jit.nozzle</a></td><td>jit.gl.nozzle.*</td><td>✅</td><td>✅</td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-TOP">nozzle-TOP</a></td><td>*</td><td>✅</td><td>✅</td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/obs-nozzle">obs-nozzle</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/blender-nozzle">blender-nozzle</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-sokol">nozzle-sokol</a></td><td>*</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.unity">nozzle.unity</a></td><td>*</td><td colspan="3">Postponed</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle.wasm">nozzle.wasm</a></td><td>*</td><td colspan="3">Pended</td></tr>
   </tbody>
 </table>
 
