@@ -114,6 +114,7 @@ auto info = frame.info();
   <a href="integrations/blender.html">blender-nozzle<span class="lang">Blender</span></a>
   <a href="integrations/sokol.html">nozzle-sokol<span class="lang">sokol_gfx</span></a>
   <a href="integrations/trussc.html">tcxNozzle<span class="lang">TrussC</span></a>
+  <a href="integrations/viewer.html">nozzle-viewer<span class="lang">Desktop Viewer</span></a>
 </div>
 
 <h2>Integration Status</h2>
@@ -148,6 +149,7 @@ auto info = frame.info();
     <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_gl_*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.unity">nozzle.unity</a></td><td>*</td><td colspan="3">Postponed</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-viewer">nozzle-viewer</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
   </tbody>
 </table>
 

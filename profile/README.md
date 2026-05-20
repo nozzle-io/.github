@@ -38,6 +38,7 @@ If you encounter problems, please do not become angry; instead, contributions in
 | [blender-nozzle](https://github.com/nozzle-io/blender-nozzle) | * | | | |
 | [nozzle-sokol](https://github.com/nozzle-io/nozzle-sokol) | * | | | |
 | [nozzle.unity](https://github.com/nozzle-io/nozzle.unity) | * | | | |
+| [nozzle-viewer](https://github.com/nozzle-io/nozzle-viewer) | * | 🟦 | 🟦 | 🟦 |
 
 ## Platforms
 
