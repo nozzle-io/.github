@@ -19,7 +19,7 @@ If you encounter problems, please do not become angry; instead, contributions in
 
 ## Integration Status
 
-*Last updated: 2026/05/03 08:00 (JST)*
+*Last updated: 2026/05/31 20:37 (JST)*
 
 | Integration | Module | macOS | Windows | Linux |
 |---|---|---|---|---|
@@ -39,6 +39,8 @@ If you encounter problems, please do not become angry; instead, contributions in
 | [nozzle-sokol](https://github.com/nozzle-io/nozzle-sokol) | * | | | |
 | [nozzle.unity](https://github.com/nozzle-io/nozzle.unity) | * | | | |
 | [nozzle-viewer](https://github.com/nozzle-io/nozzle-viewer) | * | 🟦 | 🟦 | 🟦 |
+| [nozzle-ffgl](https://github.com/nozzle-io/nozzle-ffgl) | NozzleReceive | 🟦 | 🟦 | N/A |
+| [nozzle-ffgl](https://github.com/nozzle-io/nozzle-ffgl) | NozzleSend | 🟦 | 🟦 | N/A |
 
 ## Platforms
 

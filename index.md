@@ -115,11 +115,12 @@ auto info = frame.info();
   <a href="integrations/sokol.html">nozzle-sokol<span class="lang">sokol_gfx</span></a>
   <a href="integrations/trussc.html">tcxNozzle<span class="lang">TrussC</span></a>
   <a href="integrations/viewer.html">nozzle-viewer<span class="lang">Desktop Viewer</span></a>
+  <a href="integrations/ffgl.html">nozzle-ffgl<span class="lang">FFGL / Resolume</span></a>
 </div>
 
 <h2>Integration Status</h2>
 
-<p><em>Last updated: 2026/05/08 02:30 (JST)</em></p>
+<p><em>Last updated: 2026/05/31 20:37 (JST)</em></p>
 <p>✅ = 実機検証済 &nbsp; 🟦 = CI build only &nbsp; — = 非対応 &nbsp; N/A = 対象外</p>
 
 <table>
@@ -150,6 +151,8 @@ auto info = frame.info();
     <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_gl_*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.unity">nozzle.unity</a></td><td>*</td><td colspan="3">Postponed</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-viewer">nozzle-viewer</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-ffgl">nozzle-ffgl</a></td><td>NozzleReceive</td><td>🟦</td><td>🟦</td><td>N/A</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-ffgl">nozzle-ffgl</a></td><td>NozzleSend</td><td>🟦</td><td>🟦</td><td>N/A</td></tr>
   </tbody>
 </table>
 
