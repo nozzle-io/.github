@@ -37,10 +37,12 @@ If you encounter problems, please do not become angry; instead, contributions in
 | [obs-nozzle](https://github.com/nozzle-io/obs-nozzle) | * | | | |
 | [blender-nozzle](https://github.com/nozzle-io/blender-nozzle) | * | | | |
 | [nozzle-sokol](https://github.com/nozzle-io/nozzle-sokol) | * | | | |
-| [nozzle.unity](https://github.com/nozzle-io/nozzle.unity) | * | | | |
+| [nozzle.unity](https://github.com/nozzle-io/nozzle.unity) | experimental direct C ABI | | | |
 | [nozzle-viewer](https://github.com/nozzle-io/nozzle-viewer) | * | 🟦 | 🟦 | 🟦 |
 | [nozzle-ffgl](https://github.com/nozzle-io/nozzle-ffgl) | NozzleReceive | 🟦 | 🟦 | N/A |
 | [nozzle-ffgl](https://github.com/nozzle-io/nozzle-ffgl) | NozzleSend | 🟦 | 🟦 | N/A |
+| [nozzle-spout-syphon](https://github.com/nozzle-io/nozzle-spout-syphon) | bridge scaffold | 🟦 | 🟦 | N/A |
+| [nozzle-unreal](https://github.com/nozzle-io/nozzle-unreal) | plugin scaffold | N/A | 🟦 | N/A |
 
 ## Platforms
 
