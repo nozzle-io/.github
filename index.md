@@ -115,6 +115,7 @@ auto info = frame.info();
   <a href="integrations/sokol.html">nozzle-sokol<span class="lang">sokol_gfx</span></a>
   <a href="integrations/trussc.html">tcxNozzle<span class="lang">TrussC</span></a>
   <a href="integrations/viewer.html">nozzle-viewer<span class="lang">Desktop Viewer</span></a>
+  <a href="integrations/tester.html">nozzle-tester<span class="lang">Conformance Tool</span></a>
   <a href="integrations/ffgl.html">nozzle-ffgl<span class="lang">FFGL / Resolume</span></a>
   <a href="integrations/spout-syphon.html">nozzle-spout-syphon<span class="lang">Spout / Syphon Bridge</span></a>
   <a href="integrations/unreal.html">nozzle-unreal<span class="lang">Unreal Engine</span></a>
@@ -153,6 +154,7 @@ auto info = frame.info();
     <tr><td><a href="https://github.com/nozzle-io/nozzle-pd">nozzle-pd</a></td><td>pix_nozzle_gl_*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle.unity">nozzle.unity</a></td><td>*</td><td colspan="3">Experimental direct C ABI; no native bridge</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-viewer">nozzle-viewer</a></td><td>*</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
+    <tr><td><a href="https://github.com/nozzle-io/nozzle-tester">nozzle-tester</a></td><td>CLI / GUI</td><td>🟦</td><td>🟦</td><td>🟦</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-ffgl">nozzle-ffgl</a></td><td>NozzleReceive</td><td>🟦</td><td>🟦</td><td>N/A</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-ffgl">nozzle-ffgl</a></td><td>NozzleSend</td><td>🟦</td><td>🟦</td><td>N/A</td></tr>
     <tr><td><a href="https://github.com/nozzle-io/nozzle-spout-syphon">nozzle-spout-syphon</a></td><td>Bridge scaffold</td><td>🟦</td><td>🟦</td><td>N/A</td></tr>
