@@ -48,6 +48,10 @@ If you encounter problems, please do not become angry; instead, contributions in
 
 macOS 12+ (Metal/IOSurface) · Windows 10+ (D3D11) · Linux (DMA-BUF)
 
+## App downloads
+
+Convenience latest snapshots for standalone apps are published by [nozzle-apps](https://github.com/nozzle-io/nozzle-apps/releases/tag/latest). These are mutable development snapshots, not stable releases.
+
 ## Documentation
 
 [nozzle-io.org](https://nozzle-io.org)

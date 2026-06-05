@@ -9,6 +9,7 @@ title: nozzle
   <p class="hero-platforms">macOS 12+ (Metal/IOSurface) &middot; Windows 10+ (D3D11) &middot; Linux (DMA-BUF)</p>
   <div class="hero-actions">
     <a href="getting-started.html" class="btn-primary">Get Started</a>
+    <a href="https://github.com/nozzle-io/nozzle-apps/releases/tag/latest" class="btn-secondary">App Downloads</a>
     <a href="api/cpp.html" class="btn-secondary">API Reference</a>
     <a href="https://github.com/nozzle-io/nozzle" class="btn-secondary">GitHub &rarr;</a>
   </div>
