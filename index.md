@@ -11,6 +11,7 @@ title: nozzle
     <a href="getting-started.html" class="btn-primary">Get Started</a>
     <a href="https://github.com/nozzle-io/nozzle-apps/releases/tag/latest" class="btn-secondary">App Downloads</a>
     <a href="api/cpp.html" class="btn-secondary">API Reference</a>
+    <a href="compute-costs.html" class="btn-secondary">Compute/Copy Costs</a>
     <a href="https://github.com/nozzle-io/nozzle" class="btn-secondary">GitHub &rarr;</a>
   </div>
 </div>

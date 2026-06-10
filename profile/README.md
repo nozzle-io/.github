@@ -54,4 +54,5 @@ Convenience latest snapshots for standalone apps are published by [nozzle-apps](
 
 ## Documentation
 
-[nozzle-io.org](https://nozzle-io.org)
+- [nozzle-io.org](https://nozzle-io.org)
+- [Compute/copy cost matrix](https://github.com/nozzle-io/nozzle-dev/blob/main/docs/compute-cost-matrix.md) — evidence-cited platform/backend cost classes and explicit `UNVERIFIED` cells.
