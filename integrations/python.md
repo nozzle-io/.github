@@ -3,7 +3,7 @@ layout: default
 title: Python (py.nozzle)
 ---
 
-[py.nozzle](https://github.com/nozzle-io/py.nozzle) provides Python bindings for nozzle via [nanobind](https://github.com/wjakob/nanobind). NumPy arrays are zero-copy via DLPack.
+[py.nozzle](https://github.com/nozzle-io/py.nozzle) provides Python bindings for nozzle via [nanobind](https://github.com/wjakob/nanobind). Receive pixels as NumPy copies or read-only raw mapped views.
 
 ## Install
 
@@ -65,17 +65,30 @@ for s in senders:
 names = nozzle.list_senders()
 ```
 
-## DLPack Support
+## NumPy Pixel Access
 
-Frames implement `__dlpack__` and `__dlpack_device__` for zero-copy interop with PyTorch, JAX, and other DLPack-compatible frameworks:
+`frame.get_array()` returns a packed, top-left-origin copy in logical channel
+order (BGRA8 is converted to RGBA). RGBA16 Float is widened to float32.
+For raw storage without that normalization copy:
 
 ```python
-import torch
-
 frame = receiver.acquire_frame(timeout_ms=1000)
 if frame.valid():
-    tensor = torch.from_dlpack(frame)
+    locked = frame.lock_pixels()
+    raw = locked.to_ndarray()
+    print(locked.format, raw.shape, raw.strides)
 ```
+
+The raw view is read-only, retains its mapping owner and uses the actual storage
+channel order and row stride. BGRA8 remains BGRA; half-float data is exposed as
+uint16 bit patterns. Backend mapping can still require staging/readback.
+Read-only does not freeze producer updates; use a copy for retained data.
+
+`Frame` and `LockedPixels` do not implement DLPack. The non-conforming
+`__dlpack__` / `__dlpack_device__` methods were removed; migrate direct calls to
+`get_array()` or `to_ndarray()` instead. The former direct Frame method kept
+RGBA16 Float as uint16 bits, unlike `get_array()` widening. PyTorch/JAX DLPack
+interoperability is not provided. See the [current binding documentation](https://github.com/nozzle-io/py.nozzle#numpy-api-migration).
 
 ## Pixel Format Mapping
 
@@ -115,10 +128,9 @@ NumPy dtypes map automatically to nozzle formats:
 |--------|-------------|
 | `frame.info()` | Get frame metadata (width, height, format, frame_index) |
 | `frame.get_array()` | Copy frame data to NumPy array |
-| `frame.lock_pixels()` | Zero-copy pixel access via `LockedPixels` |
+| `frame.lock_pixels()` | Transfer frame ownership to `LockedPixels` for read-only raw mapped access |
 | `frame.valid()` | Check if frame holds valid data |
 | `frame.release()` | Explicitly release frame |
-| `frame.__dlpack__()` | DLPack export |
 
 ## Architecture
 
