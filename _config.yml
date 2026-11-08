@@ -19,6 +19,9 @@ exclude:
   - Gemfile.lock
   - vendor/
   - README.md
+  - examples/
+  - build/
+  - dist/
 
 defaults:
   - scope:
