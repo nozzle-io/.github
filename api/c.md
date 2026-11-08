@@ -11,6 +11,11 @@ types use the `Nozzle` prefix. Include:
 #include <nozzle/nozzle_c.h>
 ```
 
+This is a curated reference, not the complete API. Declarations below target
+[the canonical header at core `{{ site.data.c_reference.core_revision }}`](https://github.com/nozzle-io/nozzle/blob/{{ site.data.c_reference.core_revision }}/include/nozzle/nozzle_c.h).
+The matching header is authoritative: include it rather than redeclaring these
+types or adding packing. Build against the same core revision as your library.
+
 ### Metadata Getter Migration
 
 The borrowed getters `nozzle_sender_get_info` and
@@ -34,22 +39,25 @@ structs; the complete layout is governed by the matching native header.
 
 ## Error Handling
 
-All functions return `NozzleErrorCode`. `NOZZLE_OK` (0) indicates success.
+Functions declared with return type `NozzleErrorCode` report `NOZZLE_OK` (0) on
+success. Check their results before using output values. Some cleanup functions
+return `void`; availability helpers in the canonical header return `int`.
 
 ```c
 typedef enum NozzleErrorCode {
     NOZZLE_OK = 0,
-    NOZZLE_ERROR_UNKNOWN,
-    NOZZLE_ERROR_INVALID_ARGUMENT,
-    NOZZLE_ERROR_UNSUPPORTED_BACKEND,
-    NOZZLE_ERROR_UNSUPPORTED_FORMAT,
-    NOZZLE_ERROR_DEVICE_MISMATCH,
-    NOZZLE_ERROR_RESOURCE_CREATION_FAILED,
-    NOZZLE_ERROR_SHARED_HANDLE_FAILED,
-    NOZZLE_ERROR_SENDER_NOT_FOUND,
-    NOZZLE_ERROR_SENDER_CLOSED,
-    NOZZLE_ERROR_TIMEOUT,
-    NOZZLE_ERROR_BACKEND_ERROR,
+    NOZZLE_ERROR_UNKNOWN = 1,
+    NOZZLE_ERROR_INVALID_ARGUMENT = 2,
+    NOZZLE_ERROR_UNSUPPORTED_BACKEND = 3,
+    NOZZLE_ERROR_UNSUPPORTED_FORMAT = 4,
+    NOZZLE_ERROR_DEVICE_MISMATCH = 5,
+    NOZZLE_ERROR_RESOURCE_CREATION_FAILED = 6,
+    NOZZLE_ERROR_SHARED_HANDLE_FAILED = 7,
+    NOZZLE_ERROR_SENDER_NOT_FOUND = 8,
+    NOZZLE_ERROR_SENDER_CLOSED = 9,
+    NOZZLE_ERROR_TIMEOUT = 10,
+    NOZZLE_ERROR_BACKEND_ERROR = 11,
+    NOZZLE_ERROR_COMMAND_FAILED = 12,
 } NozzleErrorCode;
 ```
 
@@ -63,6 +71,7 @@ typedef struct NozzleReceiver NozzleReceiver;
 typedef struct NozzleFrame NozzleFrame;
 typedef struct NozzleTexture NozzleTexture;
 typedef struct NozzleDevice NozzleDevice;
+typedef struct NozzlePixelMapping NozzlePixelMapping;
 ```
 
 ---
@@ -74,9 +83,10 @@ typedef struct NozzleDevice NozzleDevice;
 ```c
 typedef enum NozzleBackendType {
     NOZZLE_BACKEND_UNKNOWN = 0,
-    NOZZLE_BACKEND_D3D11,
-    NOZZLE_BACKEND_METAL,
-    NOZZLE_BACKEND_OPENGL,
+    NOZZLE_BACKEND_D3D11 = 1,
+    NOZZLE_BACKEND_METAL = 2,
+    NOZZLE_BACKEND_OPENGL = 3,
+    NOZZLE_BACKEND_DMA_BUF = 4,
 } NozzleBackendType;
 ```
 
@@ -85,24 +95,29 @@ typedef enum NozzleBackendType {
 ```c
 typedef enum NozzleTextureFormat {
     NOZZLE_FORMAT_UNKNOWN = 0,
-    NOZZLE_FORMAT_R8_UNORM,
-    NOZZLE_FORMAT_RG8_UNORM,
-    NOZZLE_FORMAT_RGBA8_UNORM,
-    NOZZLE_FORMAT_BGRA8_UNORM,
-    NOZZLE_FORMAT_RGBA8_SRGB,
-    NOZZLE_FORMAT_BGRA8_SRGB,
-    NOZZLE_FORMAT_R16_UNORM,
-    NOZZLE_FORMAT_RG16_UNORM,
-    NOZZLE_FORMAT_RGBA16_UNORM,
-    NOZZLE_FORMAT_R16_FLOAT,
-    NOZZLE_FORMAT_RG16_FLOAT,
-    NOZZLE_FORMAT_RGBA16_FLOAT,
-    NOZZLE_FORMAT_R32_FLOAT,
-    NOZZLE_FORMAT_RG32_FLOAT,
-    NOZZLE_FORMAT_RGBA32_FLOAT,
-    NOZZLE_FORMAT_R32_UINT,
-    NOZZLE_FORMAT_RGBA32_UINT,
-    NOZZLE_FORMAT_DEPTH32_FLOAT,
+    NOZZLE_FORMAT_R8_UNORM = 1,
+    NOZZLE_FORMAT_RG8_UNORM = 2,
+    NOZZLE_FORMAT_RGB8_UNORM = 3,
+    NOZZLE_FORMAT_RGBA8_UNORM = 4,
+    NOZZLE_FORMAT_BGRA8_UNORM = 5,
+    NOZZLE_FORMAT_RGBA8_SRGB = 6,
+    NOZZLE_FORMAT_BGRA8_SRGB = 7,
+    NOZZLE_FORMAT_R16_UNORM = 8,
+    NOZZLE_FORMAT_RG16_UNORM = 9,
+    NOZZLE_FORMAT_RGB16_UNORM = 10,
+    NOZZLE_FORMAT_RGBA16_UNORM = 11,
+    NOZZLE_FORMAT_R16_FLOAT = 12,
+    NOZZLE_FORMAT_RG16_FLOAT = 13,
+    NOZZLE_FORMAT_RGB16_FLOAT = 14,
+    NOZZLE_FORMAT_RGBA16_FLOAT = 15,
+    NOZZLE_FORMAT_R32_FLOAT = 16,
+    NOZZLE_FORMAT_RG32_FLOAT = 17,
+    NOZZLE_FORMAT_RGB32_FLOAT = 18,
+    NOZZLE_FORMAT_RGBA32_FLOAT = 19,
+    NOZZLE_FORMAT_R32_UINT = 20,
+    NOZZLE_FORMAT_RGBA32_UINT = 21,
+    NOZZLE_FORMAT_RGB32_UINT = 22,
+    NOZZLE_FORMAT_DEPTH32_FLOAT = 23,
 } NozzleTextureFormat;
 ```
 
@@ -111,7 +126,7 @@ typedef enum NozzleTextureFormat {
 ```c
 typedef enum NozzleReceiveMode {
     NOZZLE_RECEIVE_LATEST_ONLY = 0,
-    NOZZLE_RECEIVE_SEQUENTIAL_BEST_EFFORT,
+    NOZZLE_RECEIVE_SEQUENTIAL_BEST_EFFORT = 1,
 } NozzleReceiveMode;
 ```
 
@@ -120,11 +135,55 @@ typedef enum NozzleReceiveMode {
 ```c
 typedef enum NozzleFrameStatus {
     NOZZLE_FRAME_NEW = 0,
-    NOZZLE_FRAME_NO_NEW,
-    NOZZLE_FRAME_DROPPED,
-    NOZZLE_FRAME_SENDER_CLOSED,
-    NOZZLE_FRAME_ERROR,
+    NOZZLE_FRAME_NO_NEW = 1,
+    NOZZLE_FRAME_DROPPED = 2,
+    NOZZLE_FRAME_SENDER_CLOSED = 3,
+    NOZZLE_FRAME_ERROR = 4,
 } NozzleFrameStatus;
+```
+
+`nozzle_receiver_acquire_frame` returns `NozzleErrorCode`, not `NozzleFrameStatus`.
+
+### NozzleTextureOrigin
+
+```c
+typedef enum NozzleTextureOrigin {
+    NOZZLE_ORIGIN_TOP_LEFT = 0,
+    NOZZLE_ORIGIN_BOTTOM_LEFT = 1,
+} NozzleTextureOrigin;
+```
+
+### NozzleTransferMode
+
+```c
+typedef enum NozzleTransferMode {
+    NOZZLE_TRANSFER_UNKNOWN = 0,
+    NOZZLE_TRANSFER_ZERO_COPY_SHARED_TEXTURE = 1,
+    NOZZLE_TRANSFER_GPU_COPY = 2,
+    NOZZLE_TRANSFER_CPU_COPY = 3,
+} NozzleTransferMode;
+```
+
+### NozzleSyncMode
+
+```c
+typedef enum NozzleSyncMode {
+    NOZZLE_SYNC_NONE = 0,
+    NOZZLE_SYNC_ACCESS_GUARDED = 1,
+    NOZZLE_SYNC_GPU_FENCE_BEST_EFFORT = 2,
+} NozzleSyncMode;
+```
+
+### NozzleNativeFormatKind
+
+```c
+typedef enum NozzleNativeFormatKind {
+    NOZZLE_NATIVE_KIND_UNKNOWN = 0,
+    NOZZLE_NATIVE_KIND_MTL_PIXEL_FORMAT = 1,
+    NOZZLE_NATIVE_KIND_DXGI_FORMAT = 2,
+    NOZZLE_NATIVE_KIND_DRM_FOURCC = 3,
+    NOZZLE_NATIVE_KIND_GL_INTERNAL_FORMAT = 4,
+} NozzleNativeFormatKind;
 ```
 
 ---
@@ -139,15 +198,41 @@ typedef struct NozzleSenderDesc {
     const char *application_name;
     uint32_t ring_buffer_size;
     int allow_format_fallback;
+    uint32_t fallback_flags;
+    int fallback_flags_valid;
 } NozzleSenderDesc;
 ```
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `name` | `const char *` | Sender name for discovery |
-| `application_name` | `const char *` | Application name metadata |
-| `ring_buffer_size` | `uint32_t` | Number of frames in ring buffer (default: 3) |
-| `allow_format_fallback` | `int` | Allow format fallback (nonzero = true) |
+| `name` | `const char *` | NUL-terminated valid UTF-8 identity, 1 to 63 bytes; never truncated |
+| `application_name` | `const char *` | Valid UTF-8 display text, truncated to 63 bytes at a code-point boundary; NULL/empty becomes `unknown` |
+| `ring_buffer_size` | `uint32_t` | Clamped to 1 through 8 slots in this revision; zero selects 1, not 3. Set 3 explicitly for a three-slot ring |
+| `allow_format_fallback` | `int` | Deprecated compatibility field, used only when `fallback_flags_valid == 0` |
+| `fallback_flags` | `uint32_t` | Explicit mask when `fallback_flags_valid != 0` |
+| `fallback_flags_valid` | `int` | Nonzero selects the explicit mask, including an explicit zero mask |
+
+```c
+#define NOZZLE_FALLBACK_NONE               0u
+#define NOZZLE_FALLBACK_STORAGE_COMPATIBLE (1u << 0)
+#define NOZZLE_FALLBACK_CHANNEL_EXPANSION  (1u << 1)
+#define NOZZLE_FALLBACK_QUALITY_LOSS       (1u << 2)
+#define NOZZLE_FALLBACK_SAFE_DEFAULTS      (NOZZLE_FALLBACK_STORAGE_COMPATIBLE | NOZZLE_FALLBACK_CHANNEL_EXPANSION)
+
+NOZZLE_C_API NozzleErrorCode nozzle_resolve_fallback_flags(
+    const NozzleSenderDesc *desc,
+    uint32_t *out_flags
+);
+```
+
+This backend-independent helper resolves the same policy used by creation:
+
+- `fallback_flags_valid != 0`: use `fallback_flags`; unknown bits are `NOZZLE_ERROR_INVALID_ARGUMENT`.
+- Otherwise, `allow_format_fallback != 0`: enable safe defaults **and quality loss**.
+- Otherwise: `NOZZLE_FALLBACK_NONE`, including a zero-initialized descriptor.
+
+On failure, the helper leaves `*out_flags` unchanged. For explicit safe defaults,
+set `fallback_flags_valid = 1` and `fallback_flags = NOZZLE_FALLBACK_SAFE_DEFAULTS`.
 
 ### NozzleReceiverDesc
 
@@ -176,6 +261,9 @@ typedef struct NozzleFrameInfo {
     uint32_t width;
     uint32_t height;
     NozzleTextureFormat format;
+    NozzleTextureFormat semantic_format;
+    NozzleTransferMode transfer_mode;
+    NozzleSyncMode sync_mode;
     uint32_t dropped_frame_count;
 } NozzleFrameInfo;
 ```
@@ -187,7 +275,7 @@ typedef struct NozzleFrameInfo {
 ### nozzle_sender_create
 
 ```c
-NozzleErrorCode nozzle_sender_create(
+NOZZLE_C_API NozzleErrorCode nozzle_sender_create(
     const NozzleSenderDesc *desc,
     NozzleSender **out_sender
 );
@@ -203,13 +291,13 @@ NozzleErrorCode nozzle_sender_create(
 ### nozzle_sender_destroy
 
 ```c
-void nozzle_sender_destroy(NozzleSender *sender);
+NOZZLE_C_API void nozzle_sender_destroy(NozzleSender *sender);
 ```
 
 ### nozzle_sender_publish_texture
 
 ```c
-NozzleErrorCode nozzle_sender_publish_texture(
+NOZZLE_C_API NozzleErrorCode nozzle_sender_publish_texture(
     NozzleSender *sender,
     NozzleTexture *texture
 );
@@ -218,7 +306,7 @@ NozzleErrorCode nozzle_sender_publish_texture(
 ### nozzle_sender_acquire_writable_frame
 
 ```c
-NozzleErrorCode nozzle_sender_acquire_writable_frame(
+NOZZLE_C_API NozzleErrorCode nozzle_sender_acquire_writable_frame(
     NozzleSender *sender,
     uint32_t width,
     uint32_t height,
@@ -230,11 +318,37 @@ NozzleErrorCode nozzle_sender_acquire_writable_frame(
 ### nozzle_sender_commit_frame
 
 ```c
-NozzleErrorCode nozzle_sender_commit_frame(
+NOZZLE_C_API NozzleErrorCode nozzle_sender_commit_frame(
     NozzleSender *sender,
     NozzleFrame *frame
 );
 ```
+
+Commit only a writable frame acquired from this sender, after all CPU mappings
+have been unlocked successfully. On success the reserved slot is returned to
+the sender, but the caller still owns the `NozzleFrame` wrapper and must release
+it. Check the return code; a failed commit is not a successful publication and
+does not guarantee that the frame is reusable.
+
+On Metal, GPU writes must have completed successfully **before** commit;
+submission or `waitUntilScheduled` alone is insufficient. Commit/acquisition do
+not submit or wait for a Metal command buffer, and ring rotation is not an
+acknowledgment of receiver GPU completion.
+
+### nozzle_sender_discard_frame
+
+```c
+NOZZLE_C_API NozzleErrorCode nozzle_sender_discard_frame(
+    NozzleSender *sender,
+    NozzleFrame *frame
+);
+```
+
+Discard a writable reservation from this sender that should not be published.
+Finish its CPU mapping first. On success the slot is returned without publishing;
+the caller must still release the frame wrapper. Check discard's result too.
+If commit failed, cleanup may find that the reservation has already been consumed;
+do not treat a later discard error as publication success or reuse the frame.
 
 ### nozzle_sender_get_info_snapshot
 
@@ -275,7 +389,7 @@ This ownership does not make concurrent handle destruction safe.
 ### nozzle_receiver_create
 
 ```c
-NozzleErrorCode nozzle_receiver_create(
+NOZZLE_C_API NozzleErrorCode nozzle_receiver_create(
     const NozzleReceiverDesc *desc,
     NozzleReceiver **out_receiver
 );
@@ -284,20 +398,23 @@ NozzleErrorCode nozzle_receiver_create(
 ### nozzle_receiver_destroy
 
 ```c
-void nozzle_receiver_destroy(NozzleReceiver *receiver);
+NOZZLE_C_API void nozzle_receiver_destroy(NozzleReceiver *receiver);
 ```
 
 ### nozzle_receiver_acquire_frame
 
 ```c
-NozzleErrorCode nozzle_receiver_acquire_frame(
+NOZZLE_C_API NozzleErrorCode nozzle_receiver_acquire_frame(
     NozzleReceiver *receiver,
     const NozzleAcquireDesc *desc,
     NozzleFrame **out_frame
 );
 ```
 
-Pass `NULL` for `desc` to use non-blocking (timeout_ms = 0) behavior.
+Pass `NULL` for `desc` to use the default `timeout_ms = 0`: no CPU-side wait for
+a new publication. D3D11 also uses a zero-timeout synchronization attempt; other
+backend synchronization/import work is not a universal nonblocking guarantee.
+On success, release the returned frame with `nozzle_frame_release`.
 
 ### nozzle_receiver_get_connected_info_snapshot
 
@@ -355,7 +472,7 @@ handle valid during the call; owned output does not permit racing handle destruc
 ### nozzle_frame_get_info
 
 ```c
-NozzleErrorCode nozzle_frame_get_info(
+NOZZLE_C_API NozzleErrorCode nozzle_frame_get_info(
     NozzleFrame *frame,
     NozzleFrameInfo *out_info
 );
@@ -364,8 +481,14 @@ NozzleErrorCode nozzle_frame_get_info(
 ### nozzle_frame_release
 
 ```c
-void nozzle_frame_release(NozzleFrame *frame);
+NOZZLE_C_API void nozzle_frame_release(NozzleFrame *frame);
 ```
+
+Releases the wrapper, not an implicit commit or discard. Explicitly commit or
+discard writable reservations before release. D3D11 abandoned reservations can
+be reclaimed after their last active CPU mapping completes; release alone does
+not return the reserved slot on other backends. A separately owned pixel-mapping
+handle still requires its own unlock.
 
 ---
 
@@ -386,7 +509,7 @@ typedef struct NozzleSenderInfoArray {
     uint32_t count;
 } NozzleSenderInfoArray;
 
-NozzleErrorCode nozzle_enumerate_senders(
+NOZZLE_C_API NozzleErrorCode nozzle_enumerate_senders(
     NozzleSenderInfoArray *out_array
 );
 ```
@@ -394,7 +517,7 @@ NozzleErrorCode nozzle_enumerate_senders(
 ### nozzle_free_sender_info_array
 
 ```c
-void nozzle_free_sender_info_array(NozzleSenderInfoArray *array);
+NOZZLE_C_API void nozzle_free_sender_info_array(NozzleSenderInfoArray *array);
 ```
 
 Must be called to free the allocation returned by `nozzle_enumerate_senders`.
@@ -422,7 +545,7 @@ if (nozzle_enumerate_senders(&arr) == NOZZLE_OK) {
 ### nozzle_device_get_default
 
 ```c
-NozzleErrorCode nozzle_device_get_default(
+NOZZLE_C_API NozzleErrorCode nozzle_device_get_default(
     NozzleDevice **out_device
 );
 ```
@@ -430,7 +553,7 @@ NozzleErrorCode nozzle_device_get_default(
 ### nozzle_device_destroy
 
 ```c
-void nozzle_device_destroy(NozzleDevice *device);
+NOZZLE_C_API void nozzle_device_destroy(NozzleDevice *device);
 ```
 
 ---
@@ -442,42 +565,85 @@ void nozzle_device_destroy(NozzleDevice *device);
 ```c
 typedef struct NozzleMappedPixels {
     void *data;
-    uint32_t row_bytes;
+    int64_t row_stride_bytes;
     uint32_t width;
     uint32_t height;
     NozzleTextureFormat format;
+    NozzleTextureOrigin origin;
 } NozzleMappedPixels;
 ```
 
-### nozzle_frame_lock_pixels
+The view borrows storage from its mapping. Copying this struct does not extend
+the storage lifetime. A read mapping is read-only even though `data` is `void *`.
+Use the returned `format`, dimensions, origin and **signed** stride; do not assume
+packed RGBA8 or that the requested texture format is the mapped storage format.
+Row `y` is at `(uint8_t *)data + (int64_t)y * row_stride_bytes`, starting from the
+returned origin. Rows may contain padding; bottom-left mappings can use a
+negative stride. Do not convert that stride to an unsigned byte count.
+
+### Preferred Mapping Handles
 
 ```c
-NozzleErrorCode nozzle_frame_lock_pixels(
+NOZZLE_C_API NozzleErrorCode nozzle_frame_lock_pixels_mapping_with_origin(
     NozzleFrame *frame,
+    NozzleTextureOrigin desired_origin,
+    NozzlePixelMapping **out_mapping,
     NozzleMappedPixels *out_pixels
 );
-```
 
-### nozzle_frame_unlock_pixels
-
-```c
-void nozzle_frame_unlock_pixels(NozzleFrame *frame);
-```
-
-### nozzle_frame_lock_writable_pixels
-
-```c
-NozzleErrorCode nozzle_frame_lock_writable_pixels(
+NOZZLE_C_API NozzleErrorCode nozzle_frame_lock_writable_pixels_mapping_with_origin(
     NozzleFrame *frame,
+    NozzleTextureOrigin desired_origin,
+    NozzlePixelMapping **out_mapping,
     NozzleMappedPixels *out_pixels
 );
+
+NOZZLE_C_API NozzleErrorCode nozzle_pixel_mapping_unlock_checked(NozzlePixelMapping **mapping);
+NOZZLE_C_API void nozzle_pixel_mapping_unlock(NozzlePixelMapping **mapping);
 ```
 
-### nozzle_frame_unlock_writable_pixels
+On successful lock, the returned `NozzlePixelMapping` owns backend cleanup and
+the pixel view remains valid until that handle is unlocked. Writable locking
+requires a writable frame acquired from the sender. Unlock each handle with the
+mapping API, not the legacy frame-level unlock functions.
+
+Use `nozzle_pixel_mapping_unlock_checked(&mapping)` to observe cleanup/upload
+errors. For a valid handle, it consumes the mapping and sets the pointer to
+`NULL` **even if backend cleanup fails**; the pixel view must no longer be used.
+A null pointer or null handle is `NOZZLE_ERROR_INVALID_ARGUMENT`. The `void`
+variant tolerates null and discards errors, so it cannot establish successful
+write completion. Finish all CPU mappings and check their unlock results before
+commit; do not publish after a failed writable unlock. Discard and release the
+writable frame instead, checking discard's result as described above.
+
+### Legacy Frame-Level Mapping
+
+These compatibility APIs use one active compatibility mapping slot per frame.
+Prefer the handle APIs above for new code. The old names without `_with_origin`
+(`nozzle_frame_lock_pixels` and `nozzle_frame_lock_writable_pixels`) are not
+declared APIs in this revision.
 
 ```c
-void nozzle_frame_unlock_writable_pixels(NozzleFrame *frame);
+NOZZLE_C_API NozzleErrorCode nozzle_frame_lock_pixels_with_origin(
+    NozzleFrame *frame,
+    NozzleTextureOrigin desired_origin,
+    NozzleMappedPixels *out_pixels
+);
+NOZZLE_C_API void nozzle_frame_unlock_pixels(NozzleFrame *frame);
+
+NOZZLE_C_API NozzleErrorCode nozzle_frame_lock_writable_pixels_with_origin(
+    NozzleFrame *frame,
+    NozzleTextureOrigin desired_origin,
+    NozzleMappedPixels *out_pixels
+);
+NOZZLE_C_API NozzleErrorCode nozzle_frame_unlock_writable_pixels_checked(NozzleFrame *frame);
+NOZZLE_C_API void nozzle_frame_unlock_writable_pixels(NozzleFrame *frame);
 ```
+
+The read unlock is a no-op when no legacy read mapping is active. The checked
+writable unlock returns `NOZZLE_ERROR_INVALID_ARGUMENT` when no legacy writable
+mapping is active. Its `void` counterpart discards the result; use the checked
+variant when write completion matters.
 
 ---
 
@@ -486,7 +652,7 @@ void nozzle_frame_unlock_writable_pixels(NozzleFrame *frame);
 ### nozzle_sender_publish_gl_texture
 
 ```c
-NozzleErrorCode nozzle_sender_publish_gl_texture(
+NOZZLE_C_API NozzleErrorCode nozzle_sender_publish_gl_texture(
     NozzleSender *sender,
     uint32_t gl_texture_name,
     uint32_t gl_target,
@@ -501,7 +667,7 @@ Requires an active GL context on the calling thread.
 ### nozzle_frame_copy_to_gl_texture
 
 ```c
-NozzleErrorCode nozzle_frame_copy_to_gl_texture(
+NOZZLE_C_API NozzleErrorCode nozzle_frame_copy_to_gl_texture(
     NozzleFrame *frame,
     uint32_t gl_texture_name,
     uint32_t gl_target,
@@ -515,75 +681,30 @@ NozzleErrorCode nozzle_frame_copy_to_gl_texture(
 
 ## Full Example
 
+This single-process example publishes one asymmetric RGBA8 frame and reads it
+while the sender remains alive. It demonstrates API use and cleanup, not a
+long-running sender or a cross-process smoke test. It deliberately rejects
+unexpected formats, dimensions or origins instead of guessing a conversion.
+Run only on a machine with a supported native backend and CPU mapping support;
+unsupported operations return a nonzero exit status, not a successful skip.
+
+The [canonical C source](https://github.com/nozzle-io/.github/blob/main/_includes/examples/c_reference.c)
+below is included directly into this page and compiled as C11 by the
+[C Reference workflow](https://github.com/nozzle-io/.github/actions/workflows/c-reference.yml).
+CI builds and installs the exact core revision cited above, then links this
+source through `nozzle::nozzle` using the installed SDK. It does **not** execute
+the example or verify pixels, GPU runtime, or inter-process transfer. It does not
+compile every declaration excerpt on this page; those remain a source-review
+responsibility when updating the pinned revision.
+
 ```c
-#include <nozzle/nozzle_c.h>
-#include <stdio.h>
-#include <string.h>
+{% include examples/c_reference.c %}
+```
 
-int main() {
-    // Create sender
-    NozzleSender *sender;
-    NozzleSenderDesc desc = {0};
-    desc.name = "my_output";
-    desc.application_name = "MyApp";
-    desc.ring_buffer_size = 3;
+To compile against an installed SDK built from the cited revision, from a
+checkout of this documentation repository:
 
-    if (nozzle_sender_create(&desc, &sender) != NOZZLE_OK) {
-        fprintf(stderr, "Failed to create sender\n");
-        return 1;
-    }
-
-    // Acquire writable frame
-    NozzleFrame *frame;
-    if (nozzle_sender_acquire_writable_frame(
-            sender, 1920, 1080,
-            NOZZLE_FORMAT_RGBA8_UNORM, &frame) != NOZZLE_OK) {
-        fprintf(stderr, "Failed to acquire frame\n");
-        nozzle_sender_destroy(sender);
-        return 1;
-    }
-
-    // Write pixels
-    NozzleMappedPixels pixels;
-    if (nozzle_frame_lock_writable_pixels(frame, &pixels) == NOZZLE_OK) {
-        uint8_t *buf = (uint8_t *)pixels.data;
-        for (uint32_t i = 0; i < pixels.width * pixels.height; i++) {
-            buf[i * 4 + 0] = 255;
-            buf[i * 4 + 1] = 128;
-            buf[i * 4 + 2] = 64;
-            buf[i * 4 + 3] = 255;
-        }
-        nozzle_frame_unlock_writable_pixels(frame);
-    }
-
-    // Commit
-    nozzle_sender_commit_frame(sender, frame);
-    nozzle_frame_release(frame);
-
-    // Create receiver in another process
-    NozzleReceiver *receiver;
-    NozzleReceiverDesc recv_desc = {0};
-    recv_desc.name = "my_output";
-    recv_desc.application_name = "MyViewer";
-
-    if (nozzle_receiver_create(&recv_desc, &receiver) != NOZZLE_OK) {
-        fprintf(stderr, "Failed to create receiver\n");
-        nozzle_sender_destroy(sender);
-        return 1;
-    }
-
-    // Acquire frame
-    NozzleAcquireDesc acq = { .timeout_ms = 1000 };
-    NozzleFrame *recv_frame;
-    if (nozzle_receiver_acquire_frame(receiver, &acq, &recv_frame) == NOZZLE_OK) {
-        NozzleFrameInfo info;
-        nozzle_frame_get_info(recv_frame, &info);
-        printf("Received frame: %ux%u\n", info.width, info.height);
-        nozzle_frame_release(recv_frame);
-    }
-
-    nozzle_receiver_destroy(receiver);
-    nozzle_sender_destroy(sender);
-    return 0;
-}
+```sh
+cmake -S examples -B build/c-reference -DCMAKE_PREFIX_PATH=/absolute/path/to/nozzle-sdk
+cmake --build build/c-reference
 ```

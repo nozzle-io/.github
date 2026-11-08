@@ -1,0 +1,75 @@
+name: C Reference
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: c-reference-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile-link:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Read the documented core revision
+        id: core
+        shell: bash
+        run: |
+          revision=$(jq -er '.core_revision | select(test("^[0-9a-f]{40}$"))' _data/c_reference.json)
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
+          echo "C reference core: $revision"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: nozzle-io/nozzle
+          ref: ${{ steps.core.outputs.revision }}
+          path: _core
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Verify checkout and install build dependencies
+        env:
+          CORE_REVISION: ${{ steps.core.outputs.revision }}
+        run: |
+          test "$(git -C _core rev-parse HEAD)" = "$CORE_REVISION"
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ pkg-config libdrm-dev libgbm-dev libegl-dev libgl-dev
+
+      - name: Configure pinned static SDK
+        run: >-
+          cmake -S _core -B build/core
+          -DCMAKE_BUILD_TYPE=Release
+          -DBUILD_SHARED_LIBS=OFF
+          -DNOZZLE_BUILD_TESTS=OFF
+          -DNOZZLE_BUILD_EXAMPLES=OFF
+          -DNOZZLE_BUILD_OPENGL=ON
+          -DNOZZLE_INSTALL=ON
+          -DNOZZLE_X86_64_BASELINE=v2
+          -DCMAKE_INSTALL_PREFIX="$GITHUB_WORKSPACE/dist/sdk"
+
+      - name: Build and install SDK
+        run: |
+          cmake --build build/core --parallel 2
+          cmake --install build/core
+
+      - name: Compile and link the published C example
+        run: |
+          cmake -S examples -B build/example -DCMAKE_PREFIX_PATH="$GITHUB_WORKSPACE/dist/sdk"
+          cmake --build build/example --verbose
+
+      - name: Record evidence boundary
+        run: |
+          echo 'C11 compilation and C++ linking against the pinned installed SDK passed.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'The executable was NOT run. GPU runtime, pixel correctness, and cross-process transfer are NOT verified by this job.' >> "$GITHUB_STEP_SUMMARY"
