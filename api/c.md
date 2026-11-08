@@ -3,11 +3,32 @@ layout: default
 title: C API
 ---
 
-The C API provides a stable ABI for plugin and host integration. All types use the `Nozzle` prefix. Include:
+The C API supports plugin and host integration. Nozzle is currently pre-ABI-stable
+v0.x: source and binary compatibility are not guaranteed across changes. All
+types use the `Nozzle` prefix. Include:
 
 ```c
 #include <nozzle/nozzle_c.h>
 ```
+
+### Metadata Getter Migration
+
+The borrowed getters `nozzle_sender_get_info` and
+`nozzle_receiver_get_connected_info`, and the obsolete
+`NozzleConnectedSenderInfo` type, have been removed. Use the owned snapshot
+getters below with their corresponding complete output structs. This is a v0.x
+source/ABI break: migrate callers and rebuild applications, plugins and bindings
+against matching headers and core libraries. An old binary that imports a
+removed symbol is not compatible with the new library. Discovery's
+`NozzleSenderInfo` and enumeration/free APIs remain available.
+
+These structs describe the native C ABI, not a serialized or shared-memory wire
+layout. Use the matching header and target compiler's `sizeof`, alignment and
+`offsetof`; do not assume one byte size or packed layout across platforms.
+Current CI ABI verification targets macOS arm64 and Linux/Windows x86_64. This
+is not an i386 SysV ABI guarantee. The universal macOS SDK also compiles x86_64;
+that compilation is not x86_64 runtime evidence. Do not add packing to these
+structs; the complete layout is governed by the matching native header.
 
 ---
 
@@ -215,14 +236,37 @@ NozzleErrorCode nozzle_sender_commit_frame(
 );
 ```
 
-### nozzle_sender_get_info
+### nozzle_sender_get_info_snapshot
 
 ```c
-NozzleErrorCode nozzle_sender_get_info(
+#define NOZZLE_SENDER_NAME_CAPACITY 64
+#define NOZZLE_APPLICATION_NAME_CAPACITY 64
+#define NOZZLE_SENDER_ID_CAPACITY 37
+
+typedef struct NozzleSenderInfoSnapshot {
+    char name[NOZZLE_SENDER_NAME_CAPACITY];
+    char application_name[NOZZLE_APPLICATION_NAME_CAPACITY];
+    char id[NOZZLE_SENDER_ID_CAPACITY];
+    NozzleBackendType backend;
+} NozzleSenderInfoSnapshot;
+
+NOZZLE_C_API NozzleErrorCode nozzle_sender_get_info_snapshot(
     NozzleSender *sender,
-    NozzleSenderInfo *out_info
+    NozzleSenderInfoSnapshot *out_info
 );
 ```
+
+Capacities include the trailing NUL: names and application names hold at most
+63 UTF-8 bytes, not 63 characters; IDs hold a 36-byte ASCII UUID plus NUL.
+Oversized sender names are rejected at creation; application names are truncated
+at a UTF-8 code-point boundary.
+
+Pass a valid sender and caller-owned storage for the complete struct. On
+`NOZZLE_OK`, all strings are inline copies. The result remains valid after later
+API calls or sender destruction, for as long as the caller's storage remains
+alive. Copying the struct copies its string bytes. No nozzle free function is
+needed for the snapshot, and its array members must not be freed individually.
+This ownership does not make concurrent handle destruction safe.
 
 ---
 
@@ -255,14 +299,54 @@ NozzleErrorCode nozzle_receiver_acquire_frame(
 
 Pass `NULL` for `desc` to use non-blocking (timeout_ms = 0) behavior.
 
-### nozzle_receiver_get_connected_info
+### nozzle_receiver_get_connected_info_snapshot
 
 ```c
-NozzleErrorCode nozzle_receiver_get_connected_info(
+typedef struct NozzleConnectedSenderSnapshot {
+    char name[NOZZLE_SENDER_NAME_CAPACITY];
+    char application_name[NOZZLE_APPLICATION_NAME_CAPACITY];
+    char id[NOZZLE_SENDER_ID_CAPACITY];
+    uint32_t connected;
+    NozzleBackendType backend;
+    uint32_t width;
+    uint32_t height;
+    NozzleTextureFormat format;
+    NozzleTextureFormat semantic_format;
+    double estimated_fps;
+    uint64_t frame_counter;
+    uint64_t last_update_time_ns;
+    NozzleNativeFormatKind native_format_kind;
+    uint32_t native_format_value;
+    uint64_t native_format_modifier;
+} NozzleConnectedSenderSnapshot;
+
+NOZZLE_C_API NozzleErrorCode nozzle_receiver_get_connected_info_snapshot(
     NozzleReceiver *receiver,
-    NozzleConnectedSenderInfo *out_info
+    NozzleConnectedSenderSnapshot *out_info
 );
 ```
+
+Pass a valid receiver and caller-owned storage for the complete struct, including
+the native-format tail. It uses the same capacities and inline-copy lifetime as
+the sender snapshot: no borrowed string pointers and no nozzle free operation.
+Returned copies survive later getters, sender transitions and receiver destruction.
+
+The connection flag and metadata are copied together under the same receiver
+lock. `connected` is 1 when the receiver last observed a connection and 0 after
+it observed a disconnect. After an acquire reports `NOZZLE_ERROR_SENDER_CLOSED`,
+the snapshot retains the last-known sender identity with `connected == 0`.
+`NOZZLE_OK` means the snapshot call succeeded, not that the receiver is connected.
+
+A zero-initialized/default snapshot has `connected == 0` and empty identity
+arrays, representing no successful connection yet. That value is not evidence
+of a successful getter call for an unavailable sender: the current C receiver
+factory requires an initial connection. If creation fails, it returns an error
+and leaves the output handle null; do not call the getter on that null handle.
+
+This is last-observed state, not an active liveness probe or a reconnect operation.
+Sender exit alone need not update the flag until the receiver observes it, and
+the sender may exit immediately after a snapshot returns. Keep the receiver
+handle valid during the call; owned output does not permit racing handle destruction.
 
 ---
 
@@ -290,6 +374,13 @@ void nozzle_frame_release(NozzleFrame *frame);
 ### nozzle_enumerate_senders
 
 ```c
+typedef struct NozzleSenderInfo {
+    const char *name;
+    const char *application_name;
+    const char *id;
+    NozzleBackendType backend;
+} NozzleSenderInfo;
+
 typedef struct NozzleSenderInfoArray {
     NozzleSenderInfo *items;
     uint32_t count;
@@ -306,7 +397,13 @@ NozzleErrorCode nozzle_enumerate_senders(
 void nozzle_free_sender_info_array(NozzleSenderInfoArray *array);
 ```
 
-Must be called to free the array returned by `nozzle_enumerate_senders`.
+Must be called to free the allocation returned by `nozzle_enumerate_senders`.
+Discovery is distinct from the inline snapshots: each item's string pointers
+borrow storage owned by that returned array and remain valid only until
+`nozzle_free_sender_info_array` is called. Copying a `NozzleSenderInfo` item does
+not copy its strings. Copy any strings needed afterward before freeing the array;
+do not free items or strings individually, and do not use the array-free function
+on a snapshot.
 
 ```c
 NozzleSenderInfoArray arr;
